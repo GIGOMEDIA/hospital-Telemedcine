@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom'
 import MainLayout from '../layouts/MainLayout'
 import AuthGuard from '../guards/AuthGuard'
-import Login from '../pages/Login/Login'
+import Login from '../pages/LoginPage'
 import Dashboard from '../pages/Dashboard/Dashboard'
 import Appointments from '../pages/Appointments/Appointments'
 import EHR from '../pages/EHR/EHR'

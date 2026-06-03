@@ -1,0 +1,207 @@
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import {
+  Share2,
+  ShieldCheck,
+  Zap,
+  User,
+  Building2,
+  Mail,
+  Lock,
+} from 'lucide-react'
+import TabSwitcher from '../components/auth/TabSwitcher'
+import FeatureCard from '../components/auth/FeatureCard'
+
+const TABS = [
+  { key: 'patient', label: 'Patient', icon: User },
+  { key: 'staff', label: 'Hospital Staff', icon: Building2 },
+]
+
+const LoginPage = () => {
+  const navigate = useNavigate()
+  const [activeTab, setActiveTab] = useState('patient')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [remember, setRemember] = useState(false)
+  const [error, setError] = useState('')
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (!email || !password) {
+      setError('Please enter your email and password.')
+      return
+    }
+    setError('')
+    localStorage.setItem('token', 'mock-token')
+    navigate('/dashboard')
+  }
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[#f0f7f4]">
+      {/* Main two-column area */}
+      <div className="flex flex-1">
+        {/* ── LEFT PANEL ── */}
+        <div className="hidden md:flex md:w-[45%] bg-[#f0f7f4] flex-col items-center justify-center px-10 py-12 gap-8">
+          {/* Logo */}
+          <div className="flex flex-col items-center gap-2">
+            <Share2 size={32} color="#10AD69" />
+            <span className="text-2xl font-bold">
+              <span className="text-gray-900">Medi</span>
+              <span style={{ color: '#10AD69' }}>Care</span>
+            </span>
+          </div>
+
+          {/* Tagline */}
+          <p className="text-center text-gray-500 text-sm max-w-xs leading-relaxed">
+            Providing precision healthcare through technology. Access your
+            medical records, consult with specialists, and manage your health
+            journey in one secure platform.
+          </p>
+
+          {/* Feature cards */}
+          <div className="flex gap-4 w-full max-w-sm">
+            <FeatureCard
+              icon={ShieldCheck}
+              title="HIPAA Secure"
+              subtitle="Military-grade encryption for all medical data."
+            />
+            <FeatureCard
+              icon={Zap}
+              title="Instant Access"
+              subtitle="Real-time collaboration between patients and staff."
+            />
+          </div>
+        </div>
+
+        {/* ── RIGHT PANEL ── */}
+        <div className="flex-1 md:w-[55%] bg-white flex items-center justify-center px-8 py-12">
+          <div className="w-full max-w-md">
+            {/* Tab switcher */}
+            <TabSwitcher tabs={TABS} active={activeTab} onChange={setActiveTab} />
+
+            {/* Heading */}
+            <div className="text-center mb-6">
+              <h2 className="text-2xl font-bold text-gray-900">Welcome Back</h2>
+              <p className="text-sm text-gray-500 mt-1">
+                Sign in to access your health portal.
+              </p>
+            </div>
+
+            {/* Form */}
+            <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Email */}
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-1">
+                  Email Address
+                </label>
+                <div className="relative">
+                  <Mail
+                    size={16}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+                  <input
+                    type="email"
+                    placeholder="name@example.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="w-full border border-gray-300 rounded-md py-2 pl-9 pr-4 text-sm focus:outline-none focus:border-[#10AD69] focus:ring-1 focus:ring-[#10AD69]"
+                  />
+                </div>
+              </div>
+
+              {/* Password */}
+              <div>
+                <div className="flex justify-between items-center mb-1">
+                  <label className="text-sm font-medium text-gray-700">
+                    Password
+                  </label>
+                  <button
+                    type="button"
+                    onClick={() => console.log('Forgot password clicked')}
+                    className="text-sm font-medium"
+                    style={{ color: '#10AD69' }}
+                  >
+                    Forgot Password?
+                  </button>
+                </div>
+                <div className="relative">
+                  <Lock
+                    size={16}
+                    className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+                  />
+                  <input
+                    type="password"
+                    placeholder="••••••••"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    className="w-full border border-gray-300 rounded-md py-2 pl-9 pr-4 text-sm focus:outline-none focus:border-[#10AD69] focus:ring-1 focus:ring-[#10AD69]"
+                  />
+                </div>
+              </div>
+
+              {/* Remember device */}
+              <label className="flex items-center gap-2 cursor-pointer">
+                <input
+                  type="checkbox"
+                  checked={remember}
+                  onChange={(e) => setRemember(e.target.checked)}
+                  className="w-4 h-4 rounded accent-[#10AD69]"
+                />
+                <span className="text-sm text-gray-600">Remember this device</span>
+              </label>
+
+              {/* Error */}
+              {error && (
+                <p className="text-xs text-red-500">{error}</p>
+              )}
+
+              {/* Submit */}
+              <button
+                type="submit"
+                className="w-full py-2.5 rounded-md text-sm font-semibold text-white transition-colors"
+                style={{ backgroundColor: '#10AD69' }}
+                onMouseOver={(e) => (e.currentTarget.style.backgroundColor = '#0d9457')}
+                onMouseOut={(e) => (e.currentTarget.style.backgroundColor = '#10AD69')}
+              >
+                Sign In
+              </button>
+            </form>
+
+            {/* Footer link */}
+            <p className="text-center text-sm text-gray-500 mt-5">
+              Don't have an account?{' '}
+              <button
+                type="button"
+                onClick={() => console.log('Navigate to register')}
+                className="font-medium"
+                style={{ color: '#10AD69' }}
+              >
+                Create Account
+              </button>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* ── PAGE FOOTER ── */}
+      <footer className="bg-white border-t border-gray-100 px-10 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div>
+          <span className="text-base font-bold text-gray-900">Medi</span>
+          <span className="text-base font-bold" style={{ color: '#10AD69' }}>Care</span>
+          <p className="text-xs text-gray-400 mt-0.5">
+            © 2026 MediCare Global Healthcare Systems. All rights reserved.
+          </p>
+        </div>
+        <div className="flex items-center gap-4 text-xs text-gray-400">
+          <button type="button" className="hover:text-gray-600">Privacy Policy</button>
+          <span>|</span>
+          <button type="button" className="hover:text-gray-600">Terms of Service</button>
+          <span>|</span>
+          <button type="button" className="hover:text-gray-600">Contact Support</button>
+        </div>
+      </footer>
+    </div>
+  )
+}
+
+export default LoginPage
