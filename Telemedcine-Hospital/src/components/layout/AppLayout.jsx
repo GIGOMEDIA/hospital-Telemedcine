@@ -11,21 +11,18 @@ const AppLayout = () => {
     const handler = () => {
       const mobile = window.innerWidth < 768
       setIsMobile(mobile)
-      // when crossing into desktop, open the sidebar
-      if (!mobile) setIsOpen(true)
+      // always close on mobile entry, always open on desktop entry
+      setIsOpen(!mobile)
     }
     window.addEventListener('resize', handler)
     return () => window.removeEventListener('resize', handler)
   }, [])
 
-  // sidebar width: 260px when open, 56px (w-14) when collapsed
-  const sidebarWidth = isOpen ? 'ml-[260px]' : 'ml-14'
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar isOpen={isOpen} onToggle={() => setIsOpen(o => !o)} />
 
-      {/* Backdrop — mobile only when sidebar open as off-canvas */}
+      {/* Backdrop — mobile only, renders when off-canvas is open */}
       {isMobile && isOpen && (
         <div
           className="fixed top-16 inset-x-0 bottom-0 bg-black/40 z-[45]"
@@ -35,9 +32,17 @@ const AppLayout = () => {
 
       <Sidebar isOpen={isOpen} />
 
+      {/*
+        Desktop open:   ml-[260px]
+        Desktop closed: ml-14
+        Mobile closed:  ml-14  — icon-strip is fixed, content sits beside it
+        Mobile open:    ml-14  — off-canvas overlays, content does NOT shift
+      */}
       <main
         className={`pt-16 min-h-screen overflow-y-auto overflow-x-hidden transition-all duration-300 ease-in-out ${
-          isMobile ? 'ml-14' : sidebarWidth
+          isMobile
+            ? 'ml-14'
+            : isOpen ? 'ml-[260px]' : 'ml-14'
         }`}
       >
         <div className="p-4 sm:p-6">

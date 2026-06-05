@@ -54,8 +54,8 @@ const Sidebar = ({ isOpen: sidebarOpen }) => {
         fixed left-0 top-16 h-[calc(100vh-4rem)]
         bg-white border-r border-gray-200
         flex flex-col overflow-x-hidden
-        transition-all duration-300 ease-in-out z-50
-        ${sidebarOpen ? 'w-[260px]' : 'w-14'}
+        transition-all duration-300 ease-in-out
+        ${sidebarOpen ? 'w-[260px] z-50' : 'w-14 z-30'}
       `}
     >
       {/* 1. AI DIAGNOSIS CARD */}
