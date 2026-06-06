@@ -37,11 +37,13 @@ const LoginPage = () => {
   }
 
   return (
-    <div className="min-h-screen flex flex-col bg-[#f0f7f4]">
-      {/* Main two-column area */}
-      <div className="flex flex-1">
+    <div className="min-h-screen flex flex-col bg-[#f0f7f4] overflow-x-hidden w-full max-w-[100vw]">
+
+      {/* Main area */}
+      <div className="flex flex-col lg:flex-row flex-1">
+
         {/* ── LEFT PANEL ── */}
-        <div className="hidden md:flex md:w-[45%] bg-[#f0f7f4] flex-col items-center justify-center px-10 py-12 gap-8">
+        <div className="flex lg:w-[45%] bg-[#f0f7f4] flex-col items-center justify-center px-6 py-8 lg:px-10 lg:py-12 gap-6 lg:gap-8">
           {/* Logo */}
           <div className="flex flex-col items-center gap-2">
             <Share2 size={32} color="#10AD69" />
@@ -58,8 +60,8 @@ const LoginPage = () => {
             journey in one secure platform.
           </p>
 
-          {/* Feature cards */}
-          <div className="flex gap-4 w-full max-w-sm">
+          {/* Feature cards — hidden on mobile */}
+          <div className="hidden md:flex gap-4 w-full max-w-sm flex-wrap">
             <FeatureCard
               icon={ShieldCheck}
               title="HIPAA Secure"
@@ -74,13 +76,16 @@ const LoginPage = () => {
         </div>
 
         {/* ── RIGHT PANEL ── */}
-        <div className="flex-1 md:w-[55%] bg-white flex items-center justify-center px-8 py-12">
+        <div className="flex-1 lg:w-[55%] bg-white flex items-center justify-center px-6 py-8 lg:px-8 lg:py-12">
           <div className="w-full max-w-md">
+
             {/* Tab switcher */}
-            <TabSwitcher tabs={TABS} active={activeTab} onChange={setActiveTab} />
+            <div className="w-full">
+              <TabSwitcher tabs={TABS} active={activeTab} onChange={setActiveTab} />
+            </div>
 
             {/* Heading */}
-            <div className="text-center mb-6">
+            <div className="text-center mb-6 mt-4">
               <h2 className="text-2xl font-bold text-gray-900">Welcome Back</h2>
               <p className="text-sm text-gray-500 mt-1">
                 Sign in to access your health portal.
@@ -111,7 +116,7 @@ const LoginPage = () => {
 
               {/* Password */}
               <div>
-                <div className="flex justify-between items-center mb-1">
+                <div className="flex justify-between items-center mb-1 flex-wrap gap-1">
                   <label className="text-sm font-medium text-gray-700">
                     Password
                   </label>
@@ -145,15 +150,12 @@ const LoginPage = () => {
                   type="checkbox"
                   checked={remember}
                   onChange={(e) => setRemember(e.target.checked)}
-                  className="w-4 h-4 rounded accent-[#10AD69]"
+                  className="w-4 h-4 rounded accent-[#10AD69] shrink-0"
                 />
                 <span className="text-sm text-gray-600">Remember this device</span>
               </label>
 
-              {/* Error */}
-              {error && (
-                <p className="text-xs text-red-500">{error}</p>
-              )}
+              {error && <p className="text-xs text-red-500">{error}</p>}
 
               {/* Submit */}
               <button
@@ -169,7 +171,7 @@ const LoginPage = () => {
 
             {/* Footer link */}
             <p className="text-center text-sm text-gray-500 mt-5">
-              Don't have an account?{' '}
+              Don&apos;t have an account?{' '}
               <button
                 type="button"
                 onClick={() => console.log('Navigate to register')}
@@ -184,7 +186,7 @@ const LoginPage = () => {
       </div>
 
       {/* ── PAGE FOOTER ── */}
-      <footer className="bg-white border-t border-gray-100 px-10 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+      <footer className="bg-white border-t border-gray-100 px-6 lg:px-10 py-5 flex flex-col lg:flex-row items-center lg:items-center justify-between gap-3 text-center lg:text-left overflow-x-hidden">
         <div>
           <span className="text-base font-bold text-gray-900">Medi</span>
           <span className="text-base font-bold" style={{ color: '#10AD69' }}>Care</span>
@@ -192,7 +194,7 @@ const LoginPage = () => {
             © 2026 MediCare Global Healthcare Systems. All rights reserved.
           </p>
         </div>
-        <div className="flex items-center gap-4 text-xs text-gray-400">
+        <div className="flex items-center flex-wrap justify-center gap-3 text-xs text-gray-400">
           <button type="button" className="hover:text-gray-600">Privacy Policy</button>
           <span>|</span>
           <button type="button" className="hover:text-gray-600">Terms of Service</button>
