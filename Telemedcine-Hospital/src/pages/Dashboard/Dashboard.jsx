@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Dashboard = () => {
+const Dashboard = ({title}) => {
     return (
         <div className="p-6 bg-[#F8FAFC] min-h-screen w-full font-sans">
+            <h1 className="text-3xl font-bold text-slate-800 mb-6">{title}</h1>
             {/* Main Grid Wrapper: 3 Columns on large screens */}
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-[1600px] mx-auto">
 

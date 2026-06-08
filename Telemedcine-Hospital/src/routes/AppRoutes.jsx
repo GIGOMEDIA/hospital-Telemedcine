@@ -5,7 +5,7 @@ import Login from '../pages/LoginPage'
 import Dashboard from '../pages/Dashboard/Dashboard'
 import Appointments from '../pages/Appointments/Appointments'
 import EHR from '../pages/EHR/EHR'
-import Analytics from '../pages/Analytics/Analytics'
+import Analytics from '../pages/Analytics/Analytics'  
 import History from '../pages/History/History'
 import Patients from '../pages/Patients/Patients'
 import Events from '../pages/Events/Events'
@@ -22,6 +22,7 @@ import Emergency from '../pages/Emergency/Emergency'
 const AppRoutes = () => (
   <Routes>
     <Route path="/login" element={<Login />} />
+<<<<<<< Updated upstream
     <Route
       element={
         <AuthGuard>
@@ -31,9 +32,19 @@ const AppRoutes = () => (
     >
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="/dashboard" element={<Dashboard />} />
+=======
+    <Route element={<MainLayout />}>
+      
+      {/* 1. This loads the Doctor Dashboard */}
+      <Route path="/" element={<Dashboard title="Doctor Dashboard" />} />
+      <Route path="/dashboard" element={<Dashboard title="Doctor Dashboard" />} />
+      
+      {/* 2. This loads your Analytics page using the dashboard template */}
+      <Route path="/analytics" element={<Analytics />} />
+
+>>>>>>> Stashed changes
       <Route path="/appointments" element={<Appointments />} />
       <Route path="/ehr" element={<EHR />} />
-      <Route path="/analytics" element={<Analytics />} />
       <Route path="/history" element={<History />} />
       <Route path="/patients" element={<Patients />} />
       <Route path="/events" element={<Events />} />
