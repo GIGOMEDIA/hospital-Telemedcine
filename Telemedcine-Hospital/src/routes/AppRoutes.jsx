@@ -18,11 +18,13 @@ import Notifications from '../pages/Notifications/Notifications'
 import Settings from '../pages/Settings/Settings'
 import Profile from '../pages/Profile/Profile'
 import Emergency from '../pages/Emergency/Emergency'
+import PatientDashboard from '../pages/PatientDashboard/PatientDashboard' // Added for your next step!
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/login" element={<Login />} />
-<<<<<<< Updated upstream
+    
+    {/* This wraps all your pages safely inside the AuthGuard and AppLayout */}
     <Route
       element={
         <AuthGuard>
@@ -31,18 +33,11 @@ const AppRoutes = () => (
       }
     >
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      <Route path="/dashboard" element={<Dashboard />} />
-=======
-    <Route element={<MainLayout />}>
-      
-      {/* 1. This loads the Doctor Dashboard */}
-      <Route path="/" element={<Dashboard title="Doctor Dashboard" />} />
       <Route path="/dashboard" element={<Dashboard title="Doctor Dashboard" />} />
+      <Route path="/patient-dashboard" element={<PatientDashboard />} />
+      <Route path="/usage-report" element={<UsageReport />} />
       
-      {/* 2. This loads your Analytics page using the dashboard template */}
       <Route path="/analytics" element={<Analytics />} />
-
->>>>>>> Stashed changes
       <Route path="/appointments" element={<Appointments />} />
       <Route path="/ehr" element={<EHR />} />
       <Route path="/history" element={<History />} />
@@ -50,7 +45,6 @@ const AppRoutes = () => (
       <Route path="/events" element={<Events />} />
       <Route path="/billings" element={<Billings />} />
       <Route path="/asset-inventory" element={<AssetInventory />} />
-      <Route path="/usage-report" element={<UsageReport />} />
       <Route path="/support" element={<Support />} />
       <Route path="/ai-diagnosis" element={<AIDiagnosis />} />
       <Route path="/notifications" element={<Notifications />} />
@@ -58,6 +52,7 @@ const AppRoutes = () => (
       <Route path="/profile" element={<Profile />} />
       <Route path="/emergency" element={<Emergency />} />
     </Route>
+    
     <Route path="*" element={<Navigate to="/dashboard" replace />} />
   </Routes>
 )
