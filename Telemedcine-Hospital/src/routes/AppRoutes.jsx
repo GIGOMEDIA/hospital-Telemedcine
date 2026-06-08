@@ -7,7 +7,6 @@ import Appointments from '../pages/Appointments/Appointments'
 import EHR from '../pages/EHR/EHR'
 import Analytics from '../pages/Analytics/Analytics'  
 import History from '../pages/History/History'
-import Patients from '../pages/Patients/Patients'
 import Events from '../pages/Events/Events'
 import Billings from '../pages/Billings/Billings'
 import AssetInventory from '../pages/AssetInventory/AssetInventory'
@@ -18,13 +17,13 @@ import Notifications from '../pages/Notifications/Notifications'
 import Settings from '../pages/Settings/Settings'
 import Profile from '../pages/Profile/Profile'
 import Emergency from '../pages/Emergency/Emergency'
-import PatientDashboard from '../pages/PatientDashboard/PatientDashboard' // Added for your next step!
+// We imported it as PatientDashboard here!
+import PatientDashboard from "../pages/Patients/Patients"; 
 
 const AppRoutes = () => (
   <Routes>
     <Route path="/login" element={<Login />} />
     
-    {/* This wraps all your pages safely inside the AuthGuard and AppLayout */}
     <Route
       element={
         <AuthGuard>
@@ -34,6 +33,8 @@ const AppRoutes = () => (
     >
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="/dashboard" element={<Dashboard title="Doctor Dashboard" />} />
+      
+      {/* This uses the imported PatientDashboard safely */}
       <Route path="/patient-dashboard" element={<PatientDashboard />} />
       <Route path="/usage-report" element={<UsageReport />} />
       
@@ -41,7 +42,6 @@ const AppRoutes = () => (
       <Route path="/appointments" element={<Appointments />} />
       <Route path="/ehr" element={<EHR />} />
       <Route path="/history" element={<History />} />
-      <Route path="/patients" element={<Patients />} />
       <Route path="/events" element={<Events />} />
       <Route path="/billings" element={<Billings />} />
       <Route path="/asset-inventory" element={<AssetInventory />} />
