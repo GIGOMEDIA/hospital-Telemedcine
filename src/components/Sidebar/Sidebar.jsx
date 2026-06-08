@@ -20,10 +20,9 @@ const Sidebar = () => (
           key={to}
           to={to}
           className={({ isActive }) =>
-            `flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-              isActive
-                ? 'bg-primary text-white font-medium'
-                : 'text-slate-400 hover:text-white hover:bg-white/10'
+            `flex items-center gap-3 px-3 py-2.5 rounded-lg border text-sm transition-all ${isActive
+              ? 'bg-primary/10 text-primary font-medium border-primary/30 ring-1 ring-primary/20'
+              : 'border-transparent text-slate-400 hover:text-white hover:bg-white/10 hover:border-white/10'
             }`
           }
         >
