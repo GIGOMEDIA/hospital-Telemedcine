@@ -1,4 +1,37 @@
 import React from 'react';
+import {
+    BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
+    XAxis, YAxis, Tooltip, ResponsiveContainer,
+} from 'recharts';
+
+const overallAppointmentData = [
+    { time: '8:00', value: 30 }, { time: '9:00', value: 55 },
+    { time: '10:00', value: 40 }, { time: '11:00', value: 90 },
+    { time: '12:00', value: 60 }, { time: '1:00', value: 25 },
+    { time: '2:00', value: 70 }, { time: '3:00', value: 50 },
+    { time: '4:00', value: 85 }, { time: '5:00', value: 45 },
+];
+
+const patientsPaceData = [
+    { x: 1, new: 30, return: 50, vip: 20 }, { x: 2, new: 60, return: 30, vip: 45 },
+    { x: 3, new: 40, return: 70, vip: 60 }, { x: 4, new: 80, return: 40, vip: 30 },
+    { x: 5, new: 50, return: 90, vip: 70 }, { x: 6, new: 70, return: 60, vip: 50 },
+    { x: 7, new: 40, return: 50, vip: 80 }, { x: 8, new: 60, return: 30, vip: 60 },
+    { x: 9, new: 30, return: 70, vip: 40 }, { x: 10, new: 50, return: 55, vip: 65 },
+];
+
+const diagnosesData = [
+    { label: 'Cold',       current: 559, total: 742, color: 'bg-[#10AD69]' },
+    { label: 'Fracture',   current: 156, total: 249, color: 'bg-red-500'   },
+    { label: 'Concussion', current: 84,  total: 120, color: 'bg-[#6366F1]' },
+    { label: 'Heptatis',   current: 946, total: 950, color: 'bg-red-400'   },
+];
+
+const appointmentsOverviewData = [
+    { name: 'Male',     value: 30, color: '#EAB308' },
+    { name: 'Female',   value: 45, color: '#C084FC' },
+    { name: 'Children', value: 25, color: '#60A5FA' },
+];
 
 const Dashboard = ({title}) => {
     return (
@@ -96,113 +129,15 @@ const Dashboard = ({title}) => {
                             </div>
 
                             {/* Chart Container Area */}
-                            <div className="flex-1 flex flex-col justify-end px-6 pt-4 pb-14">
-
-                                {/* We gave this row container a fixed height (h-36) so your rectangle images can scale up properly */}
-                                <div className="flex items-end justify-between border-b border-slate-100 relative px-2 h-36">
-
-                                    {/* ———————————————— 8:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        <img
-                                            src="/Rectangle 33.png"
-                                            alt="8:00 Bar"
-                                            // className="w-full object-fill h-[40%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">8:00</span>
-                                    </div>
-
-                                    {/* ———————————————— 9:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        {/* 🚀 Rectangle 34 goes right here for 9:00 */}
-                                        <img
-                                            src="/Rectangle 34.png"
-                                            alt="9:00 Bar"
-                                            // className="w-full object-fill h-[52%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">9:00</span>
-                                    </div>
-
-                                    {/* ———————————————— 10:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        <img
-                                            src="/Rectangle 35.png"
-                                            alt="10:00 Bar"
-                                            // className="w-full object-fill h-[70%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">10:00</span>
-                                    </div>
-
-                                    {/* ———————————————— 11:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        <img
-                                            src="/Rectangle 36.png"
-                                            alt="11:00 Bar"
-                                            // className="w-full object-fill h-[15%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">11:00</span>
-                                    </div>
-
-                                    {/* ———————————————— 12:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        <img
-                                            src="/Rectangle 37.png"
-                                            alt="12:00 Bar"
-                                            // className="w-full object-fill h-[45%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">12:00</span>
-                                    </div>
-
-                                    {/* ———————————————— 1:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        <img
-                                            src="/Rectangle 38.png"
-                                            alt="1:00 Bar"
-                                            // className="w-full object-fill h-[95%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">1:00</span>
-                                    </div>
-
-                                    {/* ———————————————— 2:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        <img
-                                            src="/Rectangle 40.png"
-                                            alt="2:00 Bar"
-                                            // className="w-full object-fill h-[25%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">2:00</span>
-                                    </div>
-
-                                    {/* ———————————————— 3:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        <img
-                                            src="/Rectangle 41.png"
-                                            alt="3:00 Bar"
-                                            // className="w-full object-fill h-[80%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">3:00</span>
-                                    </div>
-
-                                    {/* ———————————————— 4:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        <img
-                                            src="/Rectangle 42.png"
-                                            alt="4:00 Bar"
-                                            // className="w-full object-fill h-[25%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">4:00</span>
-                                    </div>
-
-                                    {/* ———————————————— 5:00 SLOT ———————————————— */}
-                                    <div className="flex flex-col items-center justify-end h-full relative w-2.5">
-                                        <img
-                                            src="/Rectangle 43.png"
-                                            alt="5:00 Bar"
-                                            // className="w-full object-fill h-[82%]"
-                                        />
-                                        <span className="absolute top-full mt-2 whitespace-nowrap text-[10px] text-slate-600 font-medium -rotate-45 origin-top-left -translate-x-1">5:00</span>
-                                    </div>
-
-                                </div>
+                            <div className="flex-1 px-2 pt-4 pb-2">
+                                <ResponsiveContainer width="100%" height={220}>
+                                    <BarChart data={overallAppointmentData} barSize={10}>
+                                        <XAxis dataKey="time" tick={{ fontSize: 10, fill: '#9CA3AF' }} axisLine={false} tickLine={false} />
+                                        <YAxis hide={true} />
+                                        <Tooltip cursor={{ fill: 'transparent' }} />
+                                        <Bar dataKey="value" fill="#6366F1" radius={[4, 4, 0, 0]} />
+                                    </BarChart>
+                                </ResponsiveContainer>
                             </div>
 
                         </div>
@@ -212,30 +147,30 @@ const Dashboard = ({title}) => {
                                 <span className="font-semibold text-slate-700 text-sm tracking-wide">Patient Pace</span>
                             </div>
 
-                            <div className="px-5 flex items-center space-x-4 my-4">
-                                <img
-                                    src="/Pace.png"
-                                    alt="pace"
-                                    className="w-100"
-                                />
-
+                            <div className="px-3 pt-3 pb-1">
+                                <ResponsiveContainer width="100%" height={160}>
+                                    <LineChart data={patientsPaceData}>
+                                        <XAxis dataKey="x" hide={true} />
+                                        <YAxis hide={true} />
+                                        <Tooltip />
+                                        <Line type="monotone" dataKey="new"    stroke="#EF4444" strokeWidth={2.5} dot={false} />
+                                        <Line type="monotone" dataKey="return" stroke="#EAB308" strokeWidth={2.5} dot={false} />
+                                        <Line type="monotone" dataKey="vip"    stroke="#6366F1" strokeWidth={2.5} dot={false} />
+                                    </LineChart>
+                                </ResponsiveContainer>
                             </div>
 
-                            <div className="mx-5 mb-0 px-1 py-3  flex justify-between items-center text-[9px] text-slate-500 font-medium">
-                                <div className="flex items-center space-x-1.5">
-                                    <img src="/Ellipse 10.png"
-                                        alt="" />
-                                    <span className="text-slate-700 ">New Patient</span>
+                            <div className="px-5 pb-4 flex justify-between items-center text-[10px] text-slate-500 font-medium">
+                                <div className="flex items-center gap-1.5">
+                                    <span className="inline-block w-2 h-2 rounded-full bg-[#EF4444]" />
+                                    <span className="text-slate-700">New Patient</span>
                                 </div>
-                                <div className="flex items-center space-x-0">
-                                    <img src="/Ellipse 11.png"
-                                        alt="" />
-                                    <span className=" text-slate-800  px-2 py-1 ">Return patient</span>
+                                <div className="flex items-center gap-1.5">
+                                    <span className="inline-block w-2 h-2 rounded-full bg-[#EAB308]" />
+                                    <span className="text-slate-800">Return patient</span>
                                 </div>
-
-                                <div className="flex items-center space-x-1 ">
-                                    <img src="/Ellipse 12.png"
-                                        alt="" />
+                                <div className="flex items-center gap-1.5">
+                                    <span className="inline-block w-2 h-2 rounded-full bg-[#6366F1]" />
                                     <span className="text-slate-700">VIP Patient</span>
                                 </div>
                             </div>
@@ -306,25 +241,23 @@ const Dashboard = ({title}) => {
                         </div>
 
                         {/* PANEL: Confirmed Diagnoses */}
-                        <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+                        <div className="bg-white rounded-2xl border-2 border-blue-400 shadow-sm overflow-hidden">
                             <div className="bg-slate-50/60 px-5 py-3 border-b border-slate-100">
                                 <h3 className="font-semibold text-slate-700 text-sm tracking-wide">Confirmed Diagnoses</h3>
                             </div>
 
-                            <div className="p-5 space-y-3.5">
-                                {[
-                                    { title: 'Cold', count: '559 of 742', color: 'bg-[#22C55E]', width: 'w-[75%]' },
-                                    { title: 'Fracture', count: '156 of 249', color: 'bg-[#EF4444]', width: 'w-[62%]' },
-                                    { title: 'Concussion', count: '84 of 120', color: 'bg-[#6366F1]', width: 'w-[70%]' },
-                                    { title: 'Heptatis', count: '946 of 950', color: 'bg-[#475569]', width: 'w-[98%]' },
-                                ].map((item, i) => (
-                                    <div key={i} className="space-y-1">
-                                        <div className="flex justify-between text-xs font-bold text-slate-700 tracking-tight">
-                                            <span>{item.count}</span>
-                                            <span className="text-slate-400 font-medium">{item.title}</span>
+                            <div className="p-5">
+                                {diagnosesData.map(({ label, current, total, color }) => (
+                                    <div key={label} className="mb-4">
+                                        <div className="flex justify-between items-center mb-1">
+                                            <span className="text-lg font-bold text-gray-900">{current} of {total}</span>
+                                            <span className="text-sm text-gray-500 font-medium">{label}</span>
                                         </div>
-                                        <div className="w-full bg-slate-100 h-2 rounded-full overflow-hidden shadow-inner">
-                                            <div className={`h-full ${item.color} ${item.width} rounded-full`} />
+                                        <div className="w-full bg-gray-200 rounded-full h-2">
+                                            <div
+                                                className={`${color} h-2 rounded-full`}
+                                                style={{ width: `${Math.round((current / total) * 100)}%` }}
+                                            />
                                         </div>
                                     </div>
                                 ))}
@@ -396,56 +329,41 @@ const Dashboard = ({title}) => {
                         {/* {Bottom pie Chart representation} */}
                         <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden flex flex-col justify-between min-h-[240px] relative p-5">
 
-                            {/* Title block - exactly yours */}
+                            {/* Title block */}
                             <div className="pb-3 flex justify-between items-center">
                                 <span className="font-semibold text-sm tracking-wide">Appointment Overview</span>
                             </div>
 
-                            {/* Content block wrapper - altered ONLY to put chart and legend side-by-side */}
-                            <div className="flex items-center justify-start space-x-6 my-auto">
+                            {/* Pie + legend side by side */}
+                            <div className="flex items-center justify-start gap-4">
+                                <ResponsiveContainer width={180} height={180}>
+                                    <PieChart>
+                                        <Pie
+                                            data={appointmentsOverviewData}
+                                            cx="45%"
+                                            cy="50%"
+                                            outerRadius={80}
+                                            dataKey="value"
+                                            strokeWidth={2}
+                                            stroke="#ffffff"
+                                        >
+                                            {appointmentsOverviewData.map((entry, index) => (
+                                                <Cell key={index} fill={entry.color} />
+                                            ))}
+                                        </Pie>
+                                        <Tooltip formatter={(value, name) => [`${value}%`, name]} />
+                                    </PieChart>
+                                </ResponsiveContainer>
 
-                                {/* Your exact chart image */}
-                                <div className="w-40 h-40 flex items-center justify-center">
-                                    <img
-                                        src="/image 44.png"
-                                        alt="pace"
-                                        className="w-full object-contain"
-                                    />
-                                </div>
-
-
-                                <div className="flex flex-col space-y-0 text-[10px] text-slate-500 font-medium">
-
-                                    {/* Male Row */}
-                                    <div className="flex items-center space-x-1.5">
-                                        <img src="/Ellipse 15.png" alt="" />
-                                        <span className="text-slate-700">Male</span>
-                                    </div>
-
-                                    {/* Female Row */}
-                                    <div className="flex items-center space-x-0">
-                                        <img src="/Ellipse 16.png" alt="" />
-                                        <span className="text-slate-800 px-2 py-1">Female</span>
-                                    </div>
-
-                                    {/* Children Row */}
-                                    <div className="flex items-center space-x-1">
-                                        <img src="/Ellipse 17.png" alt="" />
-                                        <span className="text-slate-700">Children</span>
-                                    </div>
-
+                                <div className="flex flex-col gap-2">
+                                    {appointmentsOverviewData.map((entry) => (
+                                        <div key={entry.name} className="flex items-center gap-2 text-xs text-gray-600">
+                                            <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: entry.color }} />
+                                            {entry.name}
+                                        </div>
+                                    ))}
                                 </div>
                             </div>
-
-
-                            <div className="absolute bottom-0 right-0 ">
-                                <img
-                                    src="/Rectangle 60.png"
-                                    alt="pace"
-                                    className="w-15 h-20 object-contain rounded-tl-xl"
-                                />
-                            </div>
-
                         </div>
 
 
