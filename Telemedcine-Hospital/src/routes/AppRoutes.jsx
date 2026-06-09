@@ -17,7 +17,6 @@ import Notifications from '../pages/Notifications/Notifications'
 import Settings from '../pages/Settings/Settings'
 import Profile from '../pages/Profile/Profile'
 import Emergency from '../pages/Emergency/Emergency'
-// We imported it as PatientDashboard here!
 import PatientDashboard from "../pages/Patients/Patients"; 
 
 const AppRoutes = () => (
@@ -34,8 +33,8 @@ const AppRoutes = () => (
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="/dashboard" element={<Dashboard title="Doctor Dashboard" />} />
       
-      {/* This uses the imported PatientDashboard safely */}
-      <Route path="/patient-dashboard" element={<PatientDashboard />} />
+      {/* <Route path="/patient-dashboard" element={<PatientDashboard />} /> */}
+      <Route path="/patients" element={<PatientDashboard/>} />
       <Route path="/usage-report" element={<UsageReport />} />
       
       <Route path="/analytics" element={<Analytics />} />
