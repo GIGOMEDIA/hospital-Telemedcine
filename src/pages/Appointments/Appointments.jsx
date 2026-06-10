@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo } from 'react';
 import {
     Bell,
@@ -11,7 +12,7 @@ import { AppointmentDetails } from './AppointmentDetails';
 import { AppointmentForm } from './AppointmentForm';
 import { LogHistory } from './LogHistory';
 
-export default function AppointmentsPage() {
+export default function Appointments() {
     // Page state
     const [appointments, setAppointments] = useState(INITIAL_APPOINTMENTS);
     const [selectedTab, setSelectedTab] = useState('Calendar');
