@@ -1,4 +1,3 @@
-import React from 'react';
 // This steps up to pages, then goes into Dashboard
 import Dashboard from '../Dashboard/Dashboard'; 
 

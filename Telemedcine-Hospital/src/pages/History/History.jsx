@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 const TRANSACTIONS_DATA = [
   { id: 1, type: 'card', date: 'Nov 26, 2026', time: '5:00PM', invoice: '#3298', status: 'PAID', amount: 'NGN10,000.00', user: 'Ariyo Oluwamayowa', category: 'Bank Deposit' },
   { id: 2, type: 'reminder', date: 'Nov 26, 2026', time: '3:20PM', invoice: '#3298', status: 'reminder sent', amount: '', user: 'Ajok Fazuk', category: 'Medicine' },
